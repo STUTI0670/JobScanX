@@ -1,23 +1,36 @@
 
 
-# 🛡️ ScamRadar — Full-Stack Job Scam Detector
+# 🛡️ ScamRadar — AI-Powered Job Scam Detection System
 
-A powerful full-stack web application that detects fraudulent job offers using **Google Gemini AI**.
-Designed to help users quickly identify scam patterns and make safer career decisions.
+A production-ready full-stack application designed to detect fraudulent job offers using advanced AI analysis.
+The system evaluates job messages, identifies scam indicators, and provides actionable risk insights.
 
 ---
 
-## 🚀 Tech Stack
+## 🚀 Overview
 
-* **Frontend:** React 18 + CSS Modules
-* **Backend:** Node.js + Express
-* **AI Engine:** Google Gemini 1.5 Flash API
+ScamRadar helps users:
+
+* Detect suspicious job offers
+* Understand risk factors
+* Make informed decisions before applying
+
+The system leverages structured AI analysis to convert unstructured job messages into meaningful risk scores and recommendations.
+
+---
+
+## 🏗️ Tech Stack
+
+* **Frontend:** React 18 (Modular + Component-based UI)
+* **Backend:** Node.js + Express (REST API)
+* **AI Integration:** Google Gemini (LLM-based analysis)
+* **Architecture:** Client–Server (Decoupled Frontend & Backend)
 
 ---
 
 ## 📁 Project Structure
 
-```
+```bash
 scamradar/
 ├── backend/
 │   ├── server.js
@@ -26,12 +39,7 @@ scamradar/
 │
 ├── frontend/
 │   ├── public/
-│   │   └── index.html
 │   ├── src/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── App.jsx
-│   │   └── index.js
 │   └── package.json
 │
 └── README.md
@@ -39,45 +47,19 @@ scamradar/
 
 ---
 
-## ⚙️ Setup & Installation
+## ⚙️ Local Setup
 
-### 1️⃣ Get Gemini API Key
-
-Generate your API key here:
-👉 [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-
----
-
-### 2️⃣ Backend Setup
+### 1. Backend
 
 ```bash
 cd backend
 npm install
-
-# Create environment file
-cp .env.example .env
-```
-
-Add your API key in `.env`:
-
-```env
-GEMINI_API_KEY=your_key_here
-PORT=5000
-```
-
-Run backend:
-
-```bash
 npm run dev
-# or
-npm start
 ```
-
-📍 Backend runs on: `http://localhost:5000`
 
 ---
 
-### 3️⃣ Frontend Setup
+### 2. Frontend
 
 ```bash
 cd frontend
@@ -85,48 +67,42 @@ npm install
 npm start
 ```
 
-📍 Frontend runs on: `http://localhost:3000`
-
 ---
 
-## 🔌 API Endpoints
+## 🔌 API Design
 
-### ➤ POST `/analyze`
+### `POST /analyze`
 
-**Request:**
+Analyzes a job message and returns structured scam insights.
+
+**Input:**
 
 ```json
 {
-  "message": "Earn ₹50,000/month from home. Apply now!",
-  "domain": "hr.jobs@gmail.com",
-  "reportCount": "10"
+  "message": "Earn ₹80,000/month. Limited seats. Apply now!",
+  "domain": "jobs@gmail.com",
+  "reportCount": "15"
 }
 ```
 
-**Response:**
+**Output:**
 
 ```json
 {
   "success": true,
   "data": {
-    "scam_score": 80,
+    "scam_score": 85,
     "risk_level": "High",
-    "summary": "Multiple scam indicators detected",
-    "reasons": ["Payment request", "Urgency language"],
-    "highlighted_phrases": ["apply now", "registration fee"],
+    "summary": "Strong scam indicators detected",
+    "reasons": ["Urgency language", "Unverified domain"],
     "trust_breakdown": {
-      "salary_risk": 75,
+      "salary_risk": 80,
       "tone_risk": 90,
-      "domain_risk": 80,
+      "domain_risk": 75,
       "payment_risk": 95
     },
     "final_advice": {
-      "decision": "Avoid",
-      "steps": [
-        "Do not pay money",
-        "Report the sender",
-        "Block contact"
-      ]
+      "decision": "Avoid"
     }
   }
 }
@@ -134,7 +110,9 @@ npm start
 
 ---
 
-### ➤ GET `/health`
+### `GET /health`
+
+Health check endpoint to verify server status.
 
 ```json
 { "status": "ok" }
@@ -142,66 +120,72 @@ npm start
 
 ---
 
-## 🎯 Key Features
+## 🎯 Core Features
 
-* 🔍 AI-powered scam detection (0–100 score)
-* 📊 Risk breakdown (salary, tone, domain, payment)
-* ⚠️ Highlighted suspicious phrases
-* 🧠 Smart final recommendation (Apply / Caution / Avoid)
-* 🧪 Example inputs for quick testing
-* 🎨 Interactive UI (animations + loaders)
-* 🛡️ Secure API key handling via `.env`
-
----
-
-## 📈 Scam Detection Logic
-
-| Indicator            | Score Impact |
-| -------------------- | ------------ |
-| Payment request      | +40          |
-| Urgency phrases      | +20          |
-| Free email domains   | +20          |
-| Unrealistic salary   | +15          |
-| Missing company info | +10          |
-| New domain           | +10          |
-| Reports count        | +5           |
-| Trusted signals      | −30          |
+* AI-powered scam detection (0–100 risk scoring)
+* Multi-factor risk breakdown (salary, tone, domain, payment)
+* Detection of suspicious patterns and phrases
+* Structured decision output (Apply / Caution / Avoid)
+* Clean and interactive frontend visualization
+* Modular and scalable architecture
 
 ---
 
-## 🔒 Security Note
+## ⚙️ Detection Logic (High-Level)
 
-* `.env` file is **not uploaded to GitHub**
-* Always keep your API keys private
-* Use `.env.example` as a reference
+The system evaluates:
+
+* Payment requests and upfront fees
+* Urgency and pressure tactics
+* Email/domain credibility
+* Unrealistic salary promises
+* Missing or unverifiable company information
+* Community-reported signals
+
+These factors are aggregated into a normalized risk score.
 
 ---
 
-## 🧠 How It Works
+## 🔒 Security & Configuration
 
-1. User enters job message
-2. Backend sends prompt to Gemini AI
-3. AI analyzes scam signals
+* Sensitive configuration is managed via environment variables
+* `.env` files are excluded from version control
+* `.env.example` provides required variable references
+
+---
+
+## 🧠 System Flow
+
+1. User submits job message
+2. Backend processes request
+3. AI model analyzes scam indicators
 4. Structured JSON response is generated
-5. Frontend visualizes risk & advice
+5. Frontend visualizes results
 
 ---
 
-## 🚀 Future Improvements
+## 🚀 Future Scope
 
-* Chrome Extension integration
-* Real-time email scanning (Gmail/LinkedIn)
-* Domain reputation API integration
-* User reporting system
-
----
-
-
+* Browser Extension (Gmail / LinkedIn scanning)
+* Real-time scam database integration
+* Domain reputation & WHOIS analysis
+* User reporting and feedback loop
 
 ---
 
-## ⭐ Support
+## 👩‍💻 Author
 
-If you like this project, consider giving it a ⭐ on GitHub!
+**Stuti Sharma**
+
+---
+
+## ⭐ Project Value
+
+This project demonstrates:
+
+* Real-world AI integration in web applications
+* Full-stack system design
+* Practical cybersecurity use-case implementation
+* Scalable and modular architecture
 
 ---
