@@ -171,7 +171,9 @@ These factors are aggregated into a normalized risk score.
 5. Frontend visualizes results
 
 ---
+## 🎥 Demo
 
+![ScamRadar Demo](ScamRadar — Job Scam Detector - Google Chrome 2026-03-25 17-01-00.gif)
 ## 🚀 Future Scope
 
 * Browser Extension (Gmail / LinkedIn scanning)
