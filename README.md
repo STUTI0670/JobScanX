@@ -181,7 +181,9 @@ These factors are aggregated into a normalized risk score.
 ---
 ## 🎥 Demo
 
-![ScamRadar Demo](demo.gif)
+<p align="center">
+  <img src="./demo.gif" alt="Demo" width="800"/>
+</p>
 ## 🚀 Future Scope
 
 * Browser Extension (Gmail / LinkedIn scanning)
