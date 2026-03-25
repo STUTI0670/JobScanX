@@ -33,22 +33,27 @@ The system leverages structured AI analysis to convert unstructured job messages
 
 ## 📁 Project Structure
 
-```bash
-scamradar/
+```
+JobScanX/
 ├── backend/
-│   ├── server.js
+│   ├── main.py                  # FastAPI backend with ML + NLP
+│   ├── fake_job_postings.csv   # Training dataset
+│   ├── requirements.txt        # Python dependencies
+│   ├── server.js               # (optional) Node server (if used)
 │   ├── package.json
-│   └── .env.example
+│   └── .env
 │
 ├── frontend/
-│   ├── public/
-│   ├── src/
-│   └── package.json
+│   ├── public/                 # Static assets
+│   ├── src/                    # React source code
+│   ├── package.json
+│   └── .env
 │
+├── .gitignore
 └── README.md
 ```
 
----
+
 
 ## ⚙️ Local Setup
 
