@@ -1,0 +1,72 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.dot {
+  width: 3px;
+  height: 12px;
+  border-radius: 2px;
+}
+.dot.safe       { background: var(--safe); }
+.dot.suspicious { background: var(--warn); }
+.dot.scam       { background: var(--danger); }
+
+.scoreRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.scoreNum {
+  font-family: 'Syne', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+}
+.scoreNum.safe       { color: var(--safe); }
+.scoreNum.suspicious { color: var(--warn); }
+.scoreNum.scam       { color: var(--danger); }
+
+.outOf {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.track {
+  height: 8px;
+  background: var(--surface2);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 100px;
+  width: 0%;
+}
+.fill.safe       { background: linear-gradient(90deg, #16a34a, #22c55e); }
+.fill.suspicious { background: linear-gradient(90deg, #d97706, #f59e0b); }
+.fill.scam       { background: linear-gradient(90deg, #dc2626, #e8445a); }
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  font-size: 9px;
+  color: var(--muted);
+}
