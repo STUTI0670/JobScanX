@@ -21,13 +21,14 @@ export function useAnalyze() {
 
     let stepIndex = 0;
     setLoadingStep(STEPS[0]);
+
     const stepTimer = setInterval(() => {
       stepIndex = (stepIndex + 1) % STEPS.length;
       setLoadingStep(STEPS[stepIndex]);
     }, 900);
 
     try {
-      const response = await fetch("/analyze", {
+      const response = await fetch("http://localhost:5000/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message, domain, reportCount }),
@@ -36,12 +37,17 @@ export function useAnalyze() {
       const json = await response.json();
 
       if (!response.ok) {
-        throw new Error(json.error || "Analysis failed. Please try again.");
+        throw new Error(
+          typeof json.error === "string"
+            ? json.error
+            : JSON.stringify(json.error)
+        );
       }
 
       setResult(json.data);
+
     } catch (err) {
-      setError(err.message || "Network error. Is the backend running?");
+      setError(err.message || "Network error");
     } finally {
       clearInterval(stepTimer);
       setLoadingStep("");
